@@ -3,18 +3,23 @@ package com.yr.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
+import javax.persistence.*;
 import java.util.Date;
 
-
+@Entity
+@Table(name = "user")
 public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birth;
 	@NumberFormat(pattern = "##,###,###")
 	private double salary;
-	private String headUrl;
+	private String head_Url;
 	private int sex;
+
 
 	public Integer getId() {
 		return id;
@@ -49,11 +54,11 @@ public class User {
 	}
 
 	public String getHeadUrl() {
-		return headUrl;
+		return head_Url;
 	}
 
 	public void setHeadUrl(String headUrl) {
-		this.headUrl = headUrl;
+		this.head_Url = headUrl;
 	}
 
 	public int getSex() {
@@ -71,7 +76,7 @@ public class User {
 				", name='" + name + '\'' +
 				", birth=" + birth +
 				", salary=" + salary +
-				", headUrl='" + headUrl + '\'' +
+				", headUrl='" + head_Url + '\'' +
 				", sex=" + sex +
 				'}';
 	}

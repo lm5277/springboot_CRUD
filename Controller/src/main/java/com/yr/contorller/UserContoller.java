@@ -31,7 +31,7 @@ public class UserContoller {
 	 */
 	@RequestMapping("/users")
 	public String getUsers(Map<String, Object> map,Locale locale) {
-		List<User> users = userService.getUsers();
+		List<User> users = userService.cx();
 		map.put("users", users);
 		map.put("lang", locale.toString());
 		return "list";
@@ -78,7 +78,7 @@ public class UserContoller {
 	 * @param map
 	 * @return
 	 */
-	@RequestMapping("/addUserShow") 
+	@RequestMapping("/tj")
 	public String addUserShow(Map<String, Object> map) {
 		Map<Integer, String> mapSex = new HashMap<>();
 		mapSex.put(1, "男");
@@ -89,17 +89,18 @@ public class UserContoller {
 		return "input";
 	}
 
-	
+
 	/**
 	 * 删除
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value="/user/{id}", method=RequestMethod.DELETE)//删除
-	public String delete(@PathVariable("id") Integer id){
-		User user = new User();
-		user.setId(id);
-		userService.deleteUser(user);
+	public String delete(@PathVariable("id") int id){
+		System.out.println("111111111111111111111111111111111111111111111");
+//		User user =new User();
+//		user.setId(id);
+		userService.delete(id);
 		return "redirect:/users";
 	}
 	
@@ -113,7 +114,9 @@ public class UserContoller {
 	@RequestMapping(value="/user/{id}",method=RequestMethod.GET)//修改回响
 	public String updateShow(@PathVariable("id")int id,Map<String,Object> map)
 	{
+
 		User user = userService.getUserById(id);
+		System.out.println(user);
 		map.put("user", user);
 		
 		Map<Integer, String> mapSex = new HashMap<>();
@@ -132,7 +135,7 @@ public class UserContoller {
 	 * @param uploadFile
 	 * @return
 	 */
-	@RequestMapping(value = "/user", method = RequestMethod.POST)//添加保存
+	@RequestMapping(value = "/user",method=RequestMethod.POST)//添加保存
 	public String addUser(@Valid User user,Errors value, @RequestParam("head") MultipartFile uploadFile) {
 
 		try {
@@ -178,16 +181,18 @@ public class UserContoller {
 	
 	
 	/**
-	 * 修改
+	 * 修改保存
 	 * @param user
 	 * @param uploadFile
 	 * @return
 	 */
 	
-	@RequestMapping(value = "/user", method = RequestMethod.PUT)
+	@RequestMapping(value = "/user",method=RequestMethod.PUT)
 	public String updateUser(@Valid User user, @RequestParam("head") MultipartFile uploadFile) {
-		
-		
+
+		System.out.println("修改");
+
+
 		try {
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 			String fileName = simpleDateFormat.format(new Date());
@@ -213,7 +218,7 @@ public class UserContoller {
 		}
 		return "redirect:/users";
 
-		
+
 	}
 
 }

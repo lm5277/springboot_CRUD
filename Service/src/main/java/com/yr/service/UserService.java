@@ -5,6 +5,7 @@ import com.yr.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -17,18 +18,20 @@ public class UserService {
 	 * 查询
 	 * @return
 	 */
-	public List<User> getUsers()
+	@Transactional
+	public List<User> cx()
 	{
-		return testDao.getUsers();
+		return testDao.findAll();
 	}
 	
 	/**
 	 * 添加
 	 * @param user
 	 */
+	@Transactional
 	public void addUser(User user)
 	{
-		testDao.addUser(user);
+		testDao.save(user);
 	}
 	
 	
@@ -36,18 +39,21 @@ public class UserService {
 	 * 删除
 	 * @param id
 	 */
-	public void deleteUser(User user)
+	@Transactional
+			public void delete(Integer id)
 	{
-		testDao.deleteUser(user);
+		System.out.println(id);
+		testDao.deleteById(id);
 	}
 	
 	/**
 	 * 修改
 	 * @param user
 	 */
+	@Transactional
 	public void updateUser(User user)
 	{
-		testDao.updateUser(user);
+		testDao.saveAndFlush(user);
 	}
 	
 	/**
@@ -55,8 +61,9 @@ public class UserService {
 	 * @param id
 	 * @return
 	 */
+	@Transactional
 	public User getUserById(int id)
 	{
-		return testDao.getUserById(id);
+		return testDao.getById(id);
 	}
 }

@@ -1,33 +1,36 @@
 spring:
+  #???
 
-  messages:
-    basename: static/i18n/messages
+#  datasource:
+#    jndi-name: aa
 
   datasource:
-    url: jdbc:mysql://192.168.1.137:3306/lsl?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/hh?serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+
+  #freemarker
+  freemarker:
+    template-loader-path: classpath:/templates
+    cache: false
+    charset: utf-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: ctx
+    suffix: .ftlh
+
   mvc:
-    view:
-      prefix: /WEB-INF/page/
-      suffix: .jsp
-
-    static-path-pattern: /scripts/**
-
-
     hiddenmethod:
       filter:
         enabled: true
 
 
-  web:
-    resources:
-      static-locations: classpath:/scripts/
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.yr.entity
+
+
 
 
 
