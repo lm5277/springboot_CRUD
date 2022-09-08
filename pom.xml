@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Maven模型的版本号 -->
+    <modelVersion>4.0.0</modelVersion>
+    <!-- Spring Boot的父级依赖 参考:https://segmentfault.com/a/1190000018854658 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.3</version>
+        <!-- 设定一个空值将始终从仓库中获取，不从本地路径获取 -->
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <!-- 组织名 -->
+    <groupId>com</groupId>
+    <!-- 项目名称 -->
+        <artifactId>springboot_CRUD</artifactId>
+    <!-- 版本号 -->
+    <version>0.0.1-SNAPSHOT</version>
+    <!-- 指定父工程打包方式:pom-->
+    <packaging>pom</packaging>
+    <!-- 项目名称 -->
+    <name>springboot_CRUD</name>
+    <description>springboot_CRUD</description>
+    <!-- 指定版本 -->
+    <!-- 对应的包可以通过这种方式获取版本，便于版本的统一管理 <version>${java.version}</version> -->
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <!-- 指定子项目模块 -->
+    <modules>
+        <module>Dao</module>
+        <module>Entity</module>
+        <module>Controller</module>
+        <module>Service</module>
+        <module>Web</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!--msql jar包-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
+        </dependency>
+
+        <!-- jsp渲染web视图 -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+        <!-- 事务 jar包 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jta-atomikos</artifactId>
+        </dependency>
+
+        <!-- mybatis jar包 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <!--jstl jar包-->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- @Valid 注解jar包 -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.1.0.CR1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jta-atomikos</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
